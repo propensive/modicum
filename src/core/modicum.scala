@@ -50,5 +50,5 @@ def allocate
     : ResultType =
   
   val array = allowance.allocate(amount)
-  block(array).tap(allowance.deallocate(array).waive)
+  block(array).also(allowance.deallocate(array))
   
