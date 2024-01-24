@@ -11,7 +11,7 @@ project modicum
   module core
     compiler  scala
     sources   src/core
-    include   rudiments/core perforate/core
+    include   rudiments/core perforate/core hypotenuse/core
 
   module test
     compiler  scala

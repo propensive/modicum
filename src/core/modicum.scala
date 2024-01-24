@@ -1,9 +1,9 @@
 package modicum
 
 import rudiments.*
-import symbolism.*
 import perforate.*
 import fulminate.*
+import hypotenuse.*
 
 import scala.collection.mutable as scm
 
