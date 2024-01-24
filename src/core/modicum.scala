@@ -9,7 +9,7 @@ import scala.collection.mutable as scm
 
 import language.experimental.captureChecking
 
-case class ExcessMemoryError(amount: ByteSize)
+case class MemoryError(amount: ByteSize)
 extends Error(msg"a request was made for $amount more memory than has been allocated")
 
 case class Allowance(amount: ByteSize, retain: ByteSize):
@@ -17,7 +17,7 @@ case class Allowance(amount: ByteSize, retain: ByteSize):
   var retained: ByteSize = 0.b
   val blocks: scm.Map[ByteSize, List[Array[Byte]]] = scm.HashMap().withDefault { _ => Nil }
   
-  def allocate(requirement: ByteSize): Array[Byte] raises ExcessMemoryError = synchronized:
+  def allocate(requirement: ByteSize): Array[Byte] raises MemoryError = synchronized:
     if requirement < free then blocks(requirement) match
       case head :: tail =>
         blocks(requirement) = tail
@@ -27,7 +27,7 @@ case class Allowance(amount: ByteSize, retain: ByteSize):
       case Nil =>
         free -= requirement
         new Array[Byte](requirement.long.toInt)
-    else abort(ExcessMemoryError(requirement - free))
+    else abort(MemoryError(requirement - free))
 
   def deallocate(array: Array[Byte]): Unit =
     synchronized:
@@ -45,7 +45,7 @@ def limit(amount: ByteSize)[ResultType](block: Allowance ?=> ResultType): Result
 def allocate
     [ResultType]
     (amount: ByteSize)
-    (using allowance: Allowance, excessMemory: Raises[ExcessMemoryError])
+    (using allowance: Allowance, excessMemory: Raises[MemoryError])
     (block: Array[Byte]^ => ResultType)
     : ResultType =
   
