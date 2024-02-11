@@ -2,7 +2,8 @@ package modicum
 
 import rudiments.*
 
-import perforate.*
+import contingency.*
+import probably.*
 import errorHandlers.throwUnsafely
 
 import language.experimental.captureChecking

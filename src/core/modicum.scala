@@ -1,7 +1,7 @@
 package modicum
 
 import rudiments.*
-import perforate.*
+import contingency.*
 import fulminate.*
 import hypotenuse.*
 
