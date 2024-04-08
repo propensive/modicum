@@ -45,7 +45,7 @@ def limit(amount: ByteSize)[ResultType](block: Allowance ?=> ResultType): Result
 def allocate
     [ResultType]
     (amount: ByteSize)
-    (using allowance: Allowance, excessMemory: Raises[MemoryError])
+    (using allowance: Allowance, excessMemory: Errant[MemoryError])
     (block: Array[Byte]^ => ResultType)
     : ResultType =
   
