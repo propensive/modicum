@@ -20,7 +20,7 @@ import rudiments.*
 
 import contingency.*
 import probably.*
-import errorHandlers.throwUnsafely
+import strategies.throwUnsafely
 
 import language.experimental.captureChecking
 
