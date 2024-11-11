@@ -59,11 +59,11 @@ def limit(amount: ByteSize)[ResultType](block: Allowance ?=> ResultType): Result
   block(using allowance)
 
 def allocate
-    [ResultType]
-    (amount: ByteSize)
-    (using allowance: Allowance, excessMemory: Tactic[MemoryError])
-    (block: Array[Byte]^ => ResultType)
-    : ResultType =
+   [ResultType]
+   (amount: ByteSize)
+   (using allowance: Allowance, excessMemory: Tactic[MemoryError])
+   (block: Array[Byte]^ => ResultType)
+        : ResultType =
 
   val array = allowance.allocate(amount)
   block(array).also(allowance.deallocate(array))
