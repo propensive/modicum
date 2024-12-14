@@ -16,10 +16,10 @@
 
 package modicum
 
-import rudiments.*
-
 import contingency.*
 import probably.*
+import rudiments.*
+
 import strategies.throwUnsafely
 
 import language.experimental.captureChecking

@@ -16,10 +16,10 @@
 
 package modicum
 
-import rudiments.*
 import contingency.*
 import fulminate.*
 import hypotenuse.*
+import rudiments.*
 
 import scala.collection.mutable as scm
 
